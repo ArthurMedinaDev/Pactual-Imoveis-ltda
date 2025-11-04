@@ -248,3 +248,118 @@ window.addEventListener('scroll', function() {
         }
     }
 });
+// Carousel de propriedades
+document.addEventListener('DOMContentLoaded', function() {
+    const track = document.getElementById('carouselTrack');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const indicators = document.getElementById('indicators');
+    const cards = document.querySelectorAll('.property-card');
+    
+    if (!track || !prevBtn || !nextBtn) return; // Sai se não encontrar os elementos
+    
+    let currentIndex = 0;
+    let cardsPerView = 3;
+    
+    // Calcular cards por visualização baseado na largura da tela
+    function updateCardsPerView() {
+        if (window.innerWidth <= 640) {
+            cardsPerView = 1;
+        } else if (window.innerWidth <= 968) {
+            cardsPerView = 2;
+        } else {
+            cardsPerView = 3;
+        }
+        updateCarousel();
+        createIndicators();
+    }
+    
+    const maxIndex = Math.max(0, cards.length - cardsPerView);
+    
+    // Criar indicadores
+    function createIndicators() {
+        indicators.innerHTML = '';
+        const totalPages = Math.ceil(cards.length / cardsPerView);
+        for (let i = 0; i < totalPages; i++) {
+            const indicator = document.createElement('div');
+            indicator.classList.add('indicator');
+            if (i === 0) indicator.classList.add('active');
+            indicator.addEventListener('click', () => goToSlide(i));
+            indicators.appendChild(indicator);
+        }
+    }
+    
+    function updateCarousel() {
+        const cardWidth = cards[0].offsetWidth;
+        const gap = 30;
+        const offset = -(currentIndex * (cardWidth + gap));
+        track.style.transform = `translateX(${offset}px)`;
+        
+        // Atualizar botões
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex >= maxIndex;
+        
+        // Atualizar indicadores
+        const allIndicators = document.querySelectorAll('.indicator');
+        allIndicators.forEach((ind, i) => {
+            ind.classList.remove('active');
+            if (i === Math.floor(currentIndex / cardsPerView)) {
+                ind.classList.add('active');
+            }
+        });
+    }
+    
+    function goToSlide(index) {
+        currentIndex = index * cardsPerView;
+        if (currentIndex > maxIndex) currentIndex = maxIndex;
+        updateCarousel();
+    }
+    
+    prevBtn.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateCarousel();
+        }
+    });
+    
+    nextBtn.addEventListener('click', () => {
+        if (currentIndex < maxIndex) {
+            currentIndex++;
+            updateCarousel();
+        }
+    });
+    
+    // Suporte para touch/swipe em mobile
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
+    
+    track.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+    });
+    
+    track.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        currentX = e.touches[0].clientX;
+    });
+    
+    track.addEventListener('touchend', () => {
+        if (!isDragging) return;
+        const diff = startX - currentX;
+        
+        if (diff > 50 && currentIndex < maxIndex) {
+            currentIndex++;
+            updateCarousel();
+        } else if (diff < -50 && currentIndex > 0) {
+            currentIndex--;
+            updateCarousel();
+        }
+        
+        isDragging = false;
+    });
+    
+    // Inicializar
+    window.addEventListener('resize', updateCardsPerView);
+    updateCardsPerView();
+});

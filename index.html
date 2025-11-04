@@ -83,6 +83,65 @@
             </div>
         </nav>
     </header>
+        <main>
+        <!-- Hero Section com Painel de Pesquisa -->
+        <section class="hero-search">
+            <img src="imagens/inicioPesquisa.jpeg" alt="Imóveis em destaque" class="hero-background" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)'">
+            
+            <div class="hero-overlay">
+                <h1 class="hero-title">Encontre seu imóvel</h1>
+                
+                <div class="search-panel">
+                    <form class="search-form" id="searchForm">
+                        <div class="form-group">
+                            <label for="transaction-type">Tipo</label>
+                            <select id="transaction-type" class="form-select">
+                                <option value="">Selecione</option>
+                                <option value="aluguel">Aluguel</option>
+                                <option value="compra">Compra</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="city">Cidade</label>
+                            <select id="city" class="form-select">
+                                <option value="">São Paulo</option>
+                                <option value="sp">São Paulo</option>
+                                <option value="outros">Outras cidades</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="region">Região</label>
+                            <select id="region" class="form-select">
+                                <option value="">Região</option>
+                                <option value="campo-limpo">Campo Limpo</option>
+                                <option value="zona-sul">Zona Sul</option>
+                                <option value="zona-norte">Zona Norte</option>
+                                <option value="zona-leste">Zona Leste</option>
+                                <option value="zona-oeste">Zona Oeste</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bedrooms">Dormitórios</label>
+                            <select id="bedrooms" class="form-select">
+                                <option value="">Selecione</option>
+                                <option value="1">1 dormitório</option>
+                                <option value="2">2 dormitórios</option>
+                                <option value="3">3 dormitórios</option>
+                                <option value="4">4+ dormitórios</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="search-button">
+                            <span class="search-icon">🔍</span>
+                            Buscar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
 
     <!-- Main Content -->
     <main>
@@ -360,53 +419,85 @@
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Mapa do site</h4>
-                    <ul>
-                        <li><a href="#home">• Home</a></li>
-                        <li><a href="#sobre">• Sobre</a></li>
-                        <li><a href="#produtos">• Produtos</a></li>
-                        <li><a href="#sucasa">• Serviços</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Atendimento</h4>
-                    <ul>
-                        <li><a href="https://wa.me/5511943097441?text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20seu%20site%20e%20gostaria%20de%20ser%20atendido(a)">• WhatsApp</a></li>
-                        <li><a href="https://www.facebook.com/profile.php?id=100090715804475">• Facebook</a></li>
-                        <li><a href="https://www.instagram.com/pactualimoveis?igsh=bGduZDBibGlidjdm&utm_source=qr">• Instagram</a></li>
-                        <li><a href="#">• Segurança e Privacidade</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Formas de pagamento</h4>
-                    <ul>
-                        <li>Cartão de crédito</li>
-                        <li>Débito ou depósito</li>
-                        <li>Boleto</li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Contato</h4>
-                    <ul>
-                        <li>📍 Av. Carlos Lacerda, 504 - Vila Pirajussara, São Paulo - SP</li>
-                        <li> imobiliariapactual@gmail.com </li>
-                        <li> 11 5844 9235 </li>
-                        <li> 11 94309 47441 </li>
-                    </ul>
-                    </p>
-                </div>
-            </div><p class="footer-credit">© 1999-2024 Pactual Imóveis LTDA - Todos os direitos reservados.
+<!-- Footer -->
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Mapa do site</h4>
+                <ul>
+                    <li><a href="#home"><span class="arrow">›</span> Home</a></li>
+                    <li><a href="#sobre"><span class="arrow">›</span> Sobre</a></li>
+                    <li><a href="#produtos"><span class="arrow">›</span> Produtos</a></li>
+                    <li><a href="#blog"><span class="arrow">›</span> Blog</a></li>
+                    <li><a href="#contato"><span class="arrow">›</span> Contato</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Serviços</h4>
+                <ul>
+                    <li><a href="#"><span class="arrow">›</span> Venda de Imóveis</a></li>
+                    <li><a href="#"><span class="arrow">›</span> Locação de Imóveis</a></li>
+                    <li><a href="#"><span class="arrow">›</span> Administração</a></li>
+                    <li><a href="#"><span class="arrow">›</span> Avaliação</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contato</h4>
+                <ul class="contact-list">
+                    <li>
+                        <span class="contact-icon">📍</span>
+                        <span>Av. Carlos Lacerda, 504<br>Campo Limpo, São Paulo - SP</span>
+                    </li>
+                    <li>
+                        <span class="contact-icon">📞</span>
+                        <span>(11) 5844-9235<br>(11) 94309-7441</span>
+                    </li>
+                    <li>
+                        <span class="contact-icon">✉️</span>
+                        <span>imobiliariapactual@gmail.com</span>
+                    </li>
+                    <li>
+                        <span class="contact-icon">🕒</span>
+                        <span>Seg - Sex: 9h às 18h</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Redes Sociais</h4>
+                <ul>
+                    <li><a href="https://wa.me/5511943097441?text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20seu%20site%20e%20gostaria%20de%20ser%20atendido(a)"><span class="arrow">›</span> WhatsApp</a></li>
+                    <li><a href="https://www.facebook.com/profile.php?id=100090715804475"><span class="arrow">›</span> Facebook</a></li>
+                    <li><a href="https://www.instagram.com/pactualimoveis?igsh=bGduZDBibGlidjdm&utm_source=qr"><span class="arrow">›</span> Instagram</a></li>
+                </ul>
+                <h4 style="margin-top: 20px;">Formas de Pagamento</h4>
+                <ul>
+                    <li><span class="arrow">›</span> Cartão de crédito</li>
+                    <li><span class="arrow">›</span> Débito ou depósito</li>
+                    <li><span class="arrow">›</span> Boleto</li>
+                </ul>
+            </div>
         </div>
-    </footer>
 
+        <!-- Copyright Section -->
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                <p>© 2025 Pactual Imóveis. Todos os direitos reservados.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">Política de Privacidade</a>
+                <span class="separator">|</span>
+                <a href="#">Termos de Uso</a>
+                <span class="separator">|</span>
+                <span class="footer-cnpj">CNPJ: 03.723.837/0001-57</span>
+            </div>
+        </div>
+    </div>
+</footer>
     <script src="script.js"></script>
 </body>
 </html>

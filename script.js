@@ -83,24 +83,23 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Animação de scroll para elementos
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
-            }
-        });
-    }, observerOptions);
-    
-    // Observar elementos para animação
-    const animateElements = document.querySelectorAll('.service-card, .hero, .products-services, .showroom, .newsletter');
-    animateElements.forEach(el => {
-        observer.observe(el);
+   // Animação de scroll para elementos (dentro do DOMContentLoaded)
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+        }
     });
+}, observerOptions);
+
+// Observar elementos para animação (incluindo footer)
+const animateElements = document.querySelectorAll('.service-card, .hero, .products-services, .showroom, .newsletter, .property-card, .footer-section, .footer-bottom');
+animateElements.forEach(el => {
+    observer.observe(el);
+});
     
     // Adicionar efeito hover nos cards de serviço
     const serviceCards = document.querySelectorAll('.service-card');
@@ -363,3 +362,50 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', updateCardsPerView);
     updateCardsPerView();
 });
+// Formulário de busca de imóveis (adicione no DOMContentLoaded)
+const searchForm = document.getElementById('searchForm');
+if (searchForm) {
+    searchForm.addEventListener('submit', handlePropertySearch);
+}
+
+// Função para buscar imóveis
+function handlePropertySearch(event) {
+    event.preventDefault();
+    
+    const transactionType = document.getElementById('transaction-type').value;
+    const city = document.getElementById('city').value;
+    const region = document.getElementById('region').value;
+    const bedrooms = document.getElementById('bedrooms').value;
+
+    // Validação
+    if (!transactionType) {
+        alert('Por favor, selecione se deseja Aluguel ou Compra');
+        return;
+    }
+
+    // Montar objeto de busca
+    const searchParams = {
+        tipo: transactionType,
+        cidade: city || 'São Paulo',
+        regiao: region || 'Todas',
+        dormitorios: bedrooms || 'Qualquer'
+    };
+
+    console.log('Buscando imóveis com os filtros:', searchParams);
+
+    // Criar mensagem de busca
+    let message = `Buscando imóveis para ${searchParams.tipo}`;
+    
+    if (searchParams.regiao !== 'Todas') {
+        message += ` em ${searchParams.regiao}`;
+    }
+    
+    if (searchParams.dormitorios !== 'Qualquer') {
+        message += ` com ${searchParams.dormitorios} dormitórios`;
+    }
+
+    alert(message);
+
+    // Aqui você pode redirecionar ou fazer requisição AJAX
+    // window.location.href = `/buscar?tipo=${transactionType}&regiao=${region}&dormitorios=${bedrooms}`;
+}

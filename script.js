@@ -201,52 +201,6 @@ function scrollToTop() {
         behavior: 'smooth'
     });
 }
-
-// Adicionar botão de voltar ao topo
-window.addEventListener('scroll', function() {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
-    if (scrollTop > 300) {
-        if (!document.querySelector('.back-to-top')) {
-            const backToTopBtn = document.createElement('button');
-            backToTopBtn.className = 'back-to-top';
-            backToTopBtn.innerHTML = '↑';
-            backToTopBtn.style.cssText = `
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
-                background-color: #007bff;
-                color: white;
-                border: none;
-                border-radius: 50%;
-                font-size: 20px;
-                cursor: pointer;
-                z-index: 1000;
-                transition: all 0.3s ease;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            `;
-            
-            backToTopBtn.addEventListener('click', scrollToTop);
-            backToTopBtn.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.1)';
-                this.style.backgroundColor = '#0056b3';
-            });
-            backToTopBtn.addEventListener('mouseleave', function() {
-                this.style.transform = 'scale(1)';
-                this.style.backgroundColor = '#007bff';
-            });
-            
-            document.body.appendChild(backToTopBtn);
-        }
-    } else {
-        const backToTopBtn = document.querySelector('.back-to-top');
-        if (backToTopBtn) {
-            backToTopBtn.remove();
-        }
-    }
-});
 // Carousel de propriedades
 document.addEventListener('DOMContentLoaded', function() {
     const track = document.getElementById('carouselTrack');
